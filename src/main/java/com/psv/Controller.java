@@ -1,6 +1,7 @@
 package com.psv;
 
 import com.psv.ui.NewTaskDialog;
+import com.psv.ui.ResultTableDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import org.slf4j.Logger;
@@ -34,5 +35,13 @@ public class Controller {
                 log.info("[" + lastState + "] " + taskInProgress);
             }
         }
+    }
+
+    @FXML
+    protected void handleSummaryButtonAction(ActionEvent event) throws IOException {
+
+        ResultTableDialog dialog = new ResultTableDialog();
+
+        dialog.showAndWait();
     }
 }
