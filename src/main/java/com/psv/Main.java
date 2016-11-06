@@ -17,6 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("layout.fxml"));
         primaryStage.setTitle(APPLICATION_TITLE);
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+        scene.getStylesheets().add("styles/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
