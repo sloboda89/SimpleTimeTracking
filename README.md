@@ -9,7 +9,8 @@ See Maven plugin for JavaFX
 > https://github.com/javafx-maven-plugin/javafx-maven-plugin
 
 ##Last Release Notes
-Version 1.0.0 (07-11-2016)
+**Version 1.0.0 (07-11-2016)**
+
 New:
 * Adding and viewing tasks
 
