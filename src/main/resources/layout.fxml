@@ -17,6 +17,7 @@
     <Button fx:id="big_red_button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBigRedButtonAction" text="New task" textAlignment="CENTER" />
     <HBox prefHeight="50.0" prefWidth="200.0" alignment="CENTER" spacing="35">
         <Button fx:id="stop_button" onAction="#handleStopButtonAction" />
+        <Button fx:id="lunch_button" onAction="#handleLunchButtonAction" />
     </HBox>
     <Button fx:id="summary_button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSummaryButtonAction" text="Show summary" textAlignment="CENTER" />
 </VBox>

@@ -59,4 +59,20 @@ public class Controller {
             current_task_label.setText("");
         }
     }
+
+    @FXML
+    protected void handleLunchButtonAction(ActionEvent event) {
+        switch (lastState) {
+            case started: {
+                lastState = Status.stopped;
+                log.info("[" + lastState + "] " + taskInProgress);
+            }
+            case stopped: {
+                lastState = Status.started;
+                taskInProgress = "Lunch";
+                current_task_label.setText(taskInProgress);
+                log.info("[" + lastState + "] " + taskInProgress);
+            }
+        }
+    }
 }
