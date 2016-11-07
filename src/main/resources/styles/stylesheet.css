@@ -18,3 +18,10 @@
     -fx-font-size: 10px;
     -fx-padding: 5 30 5 30;
 }
+
+#stop_button {
+    -fx-graphic: url('../images/stop.png');
+    -fx-background-radius: 3;
+    -fx-background-color:
+            linear-gradient(from 50% 50% to 100% 100%, #ffb800 0%, #e24308 100%)
+}

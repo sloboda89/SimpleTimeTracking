@@ -49,4 +49,14 @@ public class Controller {
 
         dialog.showAndWait();
     }
+
+    @FXML
+    protected void handleStopButtonAction(ActionEvent event) {
+        if (lastState == Status.started) {
+            lastState = Status.stopped;
+            log.info("[" + lastState + "] " + taskInProgress);
+            taskInProgress = null;
+            current_task_label.setText("");
+        }
+    }
 }
