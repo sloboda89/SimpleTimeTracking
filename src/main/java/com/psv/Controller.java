@@ -4,6 +4,7 @@ import com.psv.ui.NewTaskDialog;
 import com.psv.ui.ResultTableDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,9 @@ public class Controller {
     private final NewTaskDialog dialog = new NewTaskDialog();
 
     @FXML
+    private Label current_task_label;
+
+    @FXML
     protected void handleBigRedButtonAction(ActionEvent event) {
         switch (lastState) {
             case started: {
@@ -32,6 +36,7 @@ public class Controller {
                 Optional<String> result = dialog.showDialog();
                 lastState = Status.started;
                 result.ifPresent(task -> taskInProgress = task);
+                current_task_label.setText(taskInProgress);
                 log.info("[" + lastState + "] " + taskInProgress);
             }
         }
