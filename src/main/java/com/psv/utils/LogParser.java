@@ -3,6 +3,7 @@ package com.psv.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -39,5 +40,11 @@ public class LogParser {
             });
         }
         return result;
+    }
+
+    public static String convertToJiraFormat(long minutes) {
+        Duration duration = Duration.ofMinutes(minutes);
+        return (duration.toHours() == 0 ? "" : String.format("%dh ", duration.toHours())) +
+                String.format("%dm", duration.toMinutes() - (duration.toHours() * 60));
     }
 }

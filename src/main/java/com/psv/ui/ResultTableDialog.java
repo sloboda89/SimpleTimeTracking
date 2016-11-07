@@ -31,7 +31,7 @@ public class ResultTableDialog extends Dialog<Boolean> {
 
         table.setPrefWidth(WIDTH);
         List<TaskTableColumn> taskTableColumns = Arrays.asList(
-                new TaskTableColumn<Long>("Time", "time", 50),
+                new TaskTableColumn<String>("Time", "time", 60),
                 new TaskTableColumn<String>("Task", "task", 500)
         );
         table.getColumns().addAll(taskTableColumns);
@@ -51,6 +51,6 @@ public class ResultTableDialog extends Dialog<Boolean> {
 
     private void fillTable() throws IOException {
         Map<String, Long> log = LogParser.parse("./SimpleTimeTracking/logs/log-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + ".log");
-        log.forEach((k,v) -> data.add(new TaskTableRow(v, k)));
+        log.forEach((k,v) -> data.add(new TaskTableRow(LogParser.convertToJiraFormat(v), k)));
     }
 }
