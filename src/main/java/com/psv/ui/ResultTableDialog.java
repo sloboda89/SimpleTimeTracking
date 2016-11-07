@@ -6,7 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -24,6 +28,8 @@ public class ResultTableDialog extends Dialog<Boolean> {
     private final ObservableList<TaskTableRow> data = FXCollections.observableArrayList();
 
     private final int WIDTH = 600;
+
+    private long totalDuration = 0;
 
     public ResultTableDialog() throws IOException {
         super();
@@ -44,13 +50,21 @@ public class ResultTableDialog extends Dialog<Boolean> {
 
         table.setItems(data);
 
-        getDialogPane().setContent(table);
+        Label totalLabel = new Label("Total: " + LogParser.convertToJiraFormat(totalDuration));
+        totalLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+
+        VBox vBox = new VBox(10);
+
+        vBox.getChildren().addAll(table, totalLabel);
+
+        getDialogPane().setContent(vBox);
 
         getDialogPane().getScene().getWindow().setOnCloseRequest(event -> this.getDialogPane().getScene().getWindow().hide());
     }
 
     private void fillTable() throws IOException {
         Map<String, Long> log = LogParser.parse("./SimpleTimeTracking/logs/log-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + ".log");
+        totalDuration = log.entrySet().stream().filter(item -> !item.getKey().equals("Lunch")).mapToLong(Map.Entry::getValue).sum();
         log.forEach((k,v) -> data.add(new TaskTableRow(LogParser.convertToJiraFormat(v), k)));
     }
 }
